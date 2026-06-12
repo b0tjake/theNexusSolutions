@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: abbdb077b573cb0439ef05c5f8d1b122
+guid: 6d39cc883f0d8ed4c80f15c0178a1131
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
@@ -8,102 +8,102 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Material.001
-    second: {fileID: 2100000, guid: 56463b07f1fcc5142afdac4fbd137209, type: 2}
+    second: {fileID: 2100000, guid: 798af5f033fbec34da56b3afea31ef62, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Metal
-    second: {fileID: 2100000, guid: 4c2370ce7c136c345a77bf53fa3ffdbd, type: 2}
+    second: {fileID: 2100000, guid: 636dd3e4f9c4a9c43bcc4f16b3b40c25, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Rust
-    second: {fileID: 2100000, guid: cd7f3d523d1be074da81f5de503d5189, type: 2}
+    second: {fileID: 2100000, guid: 36bf91192c4b4a543b28489213b9b0a6, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: floor
-    second: {fileID: 2100000, guid: 0f9d82cdfd9a35a42929d5b603702df6, type: 2}
+    second: {fileID: 2100000, guid: 4e6dba84a27989040a2d5a86a5c39210, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: lights
-    second: {fileID: 2100000, guid: a465734a1e0dfce40a9f5e1abc8dea1e, type: 2}
+    second: {fileID: 2100000, guid: f13990d0792d8cd4885ecf885bdfd5f6, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: metal
-    second: {fileID: 2100000, guid: 3181a4658b4657b4686a2cb428f63964, type: 2}
+    second: {fileID: 2100000, guid: f9f3f9f90728a1e40a813852f44b705b, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: wall-texture
-    second: {fileID: 2100000, guid: 8ce1f00bb3c96ef4f9d2cf1d2a8e918f, type: 2}
+    second: {fileID: 2100000, guid: 77143458e4f1fd14493de9bf12ed11b7, type: 2}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: Golden-Polaris-BQ2616-Polished-001-Base_Color-4K
-    second: {fileID: 2800000, guid: 5083756e2ac354c4da9f181c2e00ae92, type: 3}
+    second: {fileID: 2800000, guid: 6b7b4052c43a81c4bbbb537ad85ff127, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: Golden-Polaris-BQ2616-Polished-001-Normal-4K
-    second: {fileID: 2800000, guid: cb6cbc47c93c13647a149d9e3797447e, type: 3}
+    second: {fileID: 2800000, guid: 91bf94f6ef463614fadc3de78eea5bc9, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: Golden-Polaris-BQ2616-Polished-001-Roughness-4K
-    second: {fileID: 2800000, guid: 28fcedd54cdfb8743b844b8386b7adfd, type: 3}
+    second: {fileID: 2800000, guid: 712a468dacd670644b527e6721fb3185, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: Metal009_2K-JPG_Color
-    second: {fileID: 2800000, guid: 5e5b774e9e2fe14419054fb63363b9fb, type: 3}
+    second: {fileID: 2800000, guid: acd71cba6e2c08a4dad42c7466ea8f36, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: Metal009_2K-JPG_Metalness
-    second: {fileID: 2800000, guid: 90e73b7f4af385b44925e7e1176df731, type: 3}
+    second: {fileID: 2800000, guid: 0e270608e6ea89f43aa7ef1002e95016, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: Metal009_2K-JPG_NormalGL
-    second: {fileID: 2800000, guid: 273b70235daadf04ead5ce4dc4b15881, type: 3}
+    second: {fileID: 2800000, guid: 6241685e826f8e044be65eb0cbfb7cfa, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: Metal009_2K-JPG_Roughness
-    second: {fileID: 2800000, guid: ac824271cb665d241b6b2b6e3616bf6b, type: 3}
+    second: {fileID: 2800000, guid: b72b745bb9f834b46bfbb1c60fd7a813, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: rusty_metal_05_diff_2k
-    second: {fileID: 2800000, guid: 47b6e6588130d954b9bc96da773c9dd4, type: 3}
+    second: {fileID: 2800000, guid: bd1924972186f604091c6f2e6b25ef96, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: rusty_metal_05_nor_gl_2k
-    second: {fileID: 2800000, guid: 7c1eb93a793e67d42a8b993fc133f71f, type: 3}
+    second: {fileID: 2800000, guid: c2874a668719c494d9499888e951e29a, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: rusty_metal_05_rough_2k
-    second: {fileID: 2800000, guid: 45f57569053899f438ccd35fba3e34ca, type: 3}
+    second: {fileID: 2800000, guid: 2091f2c18e7feb34a8b3cc3f318a2ee7, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: tiles_0002_color_1k
-    second: {fileID: 2800000, guid: e9d6675b3f3e7b64cba785244d7220ce, type: 3}
+    second: {fileID: 2800000, guid: 7f90fedb68cfea4419f88421442335fa, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: tiles_0002_normal_opengl_1k
-    second: {fileID: 2800000, guid: 2060b4df8efc8f94cab903f884e92df7, type: 3}
+    second: {fileID: 2800000, guid: 6f84bf24bb71cf242a81e3604ed4f29b, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: tiles_0002_roughness_1k
-    second: {fileID: 2800000, guid: 9cc4e6fd88a17d644a0e33f9da55d1cf, type: 3}
+    second: {fileID: 2800000, guid: 892b1d4818017e244a800faee51373f9, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
