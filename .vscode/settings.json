@@ -67,6 +67,6 @@
         "*.sln": "*.csproj",
         "*.slnx": "*.csproj"
     },
-    "dotnet.defaultSolution": "theNexusSolutions.slnx",
+    "dotnet.defaultSolution": "The_Nexus_Project.slnx",
     "dotnet.enableWorkspaceBasedDevelopment": false
 }
