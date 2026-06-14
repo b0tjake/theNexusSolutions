@@ -22,7 +22,8 @@ Collider col;
 
     Rigidbody rb;
 
-    
+    int originalLayer;
+
 
     public enum State { Idle, Reading, Held }
     public State currentState = State.Idle;
@@ -40,6 +41,7 @@ Collider col;
 
     originalPosition = transform.position;
     originalRotation = transform.rotation;
+    originalLayer = gameObject.layer;
 }
 
     public override void OnInteract()
@@ -62,7 +64,7 @@ public void StartReading()
     rb.linearVelocity = Vector3.zero;
     rb.useGravity = false;
     rb.isKinematic = true;
-    col.enabled = false;
+    gameObject.layer = LayerMask.NameToLayer("HeldItem");
 }
 
 public void PickUp()
@@ -72,7 +74,7 @@ public void PickUp()
     rb.useGravity = false;
     rb.linearDamping = 10f;
     rb.angularDamping = 10f;
-    col.enabled = false;
+    gameObject.layer = LayerMask.NameToLayer("HeldItem");
 }
 
 public void PutBack()
@@ -82,7 +84,7 @@ public void PutBack()
     rb.useGravity = true;
     rb.linearDamping = 1f;
     rb.angularDamping = 0.05f;
-    col.enabled = true;
+    gameObject.layer = originalLayer;
 
     transform.position = originalPosition;
     transform.rotation = originalRotation;
@@ -96,7 +98,7 @@ public void Drop()
     rb.useGravity = true;
     rb.linearDamping = 1f;
     rb.angularDamping = 0.05f;
-    col.enabled = true;
+    gameObject.layer = originalLayer;
 
     transform.rotation = originalRotation;
 }
@@ -107,7 +109,7 @@ public void Throw(Vector3 direction, float chargePercent)
     rb.useGravity = true;
     rb.linearDamping = 1f;
     rb.angularDamping = 0.05f;
-    col.enabled = true;
+    gameObject.layer = originalLayer;
 
     transform.rotation = originalRotation;
 

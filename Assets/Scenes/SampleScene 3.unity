@@ -3864,7 +3864,7 @@ GameObject:
   - component: {fileID: 1187929738}
   - component: {fileID: 1175163084}
   - component: {fileID: 1187929739}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FirstPersonCharacter
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -3885,7 +3885,7 @@ GameObject:
   - component: {fileID: 1189585898}
   - component: {fileID: 1187567978}
   - component: {fileID: 1189585899}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FPSController
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -6439,7 +6439,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2037889858}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ------Objects------------------------
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6471,7 +6471,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2129038331}
   - component: {fileID: 2129038330}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PlayerAudioSource
   m_TagString: Untagged
   m_Icon: {fileID: 0}
