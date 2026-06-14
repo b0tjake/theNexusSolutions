@@ -4,13 +4,16 @@ using UnityEngine;
 public class HoldableObject : Interactable
 {
     [Header("Hold Settings")]
-    public float holdDistance = 2f;       // how far in front of camera
-    public float followSpeed = 15f;       // how smoothly it follows
+    public float holdDistance = 2f;
+    public float followSpeed = 15f;
     public float rotationSpeed = 8f;
+
+    [Header("Throw Settings")]
+    public float minThrowForce = 5f;
+    public float maxThrowForce = 25f;
 
     Rigidbody rb;
     bool isHeld = false;
-    Transform holdTarget;                 // empty transform in front of camera
 
     void Start()
     {
@@ -39,14 +42,24 @@ public class HoldableObject : Interactable
         rb.useGravity = true;
         rb.linearDamping = 1f;
         rb.angularDamping = 0.05f;
-        holdTarget = null;
+    }
+
+    public void Throw(Vector3 direction, float chargePercent)
+    {
+        isHeld = false;
+        rb.useGravity = true;
+        rb.linearDamping = 1f;
+        rb.angularDamping = 0.05f;
+
+        float force = Mathf.Lerp(minThrowForce, maxThrowForce, chargePercent);
+        rb.AddForce(direction * force, ForceMode.Impulse);
     }
 
     public void HoldUpdate(Transform cameraTransform)
     {
         if (!isHeld) return;
 
-        Vector3 targetPos = cameraTransform.position 
+        Vector3 targetPos = cameraTransform.position
                           + cameraTransform.forward * holdDistance;
 
         rb.linearVelocity = (targetPos - transform.position) * followSpeed;
