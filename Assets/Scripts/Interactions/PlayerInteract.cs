@@ -1,4 +1,3 @@
-// PlayerInteract.cs
 using UnityEngine;
 
 public class PlayerInteract : MonoBehaviour
@@ -7,27 +6,25 @@ public class PlayerInteract : MonoBehaviour
     public Camera playerCamera;
 
     [Header("Throw Settings")]
-    public float maxChargeTime = 1.5f; // seconds to reach full power
+    public float maxChargeTime = 1.5f;
 
     Interactable current;
-    HoldableObject heldObject;
+    HoldableObject activeObject; // either Reading or Held
 
     float chargeTime = 0f;
     bool isCharging = false;
 
-    // Exposed for UI slider
     public float ChargePercent => Mathf.Clamp01(chargeTime / maxChargeTime);
     public bool IsCharging => isCharging;
-    public bool IsHoldingObject => heldObject != null;
+    public bool IsHoldingObject => activeObject != null && activeObject.IsHeld();
 
     void Update()
     {
-        if (heldObject != null)
-            heldObject.HoldUpdate(playerCamera.transform);
+        if (activeObject != null)
+            activeObject.HoldUpdate(playerCamera.transform);
 
         // Raycast for interactables
-        Ray ray = new Ray(playerCamera.transform.position,
-                          playerCamera.transform.forward);
+        Ray ray = new Ray(playerCamera.transform.position, playerCamera.transform.forward);
         RaycastHit[] hits = Physics.RaycastAll(ray, range);
 
         Interactable found = null;
@@ -39,27 +36,34 @@ public class PlayerInteract : MonoBehaviour
         }
         current = found;
 
-        // E = pick up / drop
+        // E = progress through states
         if (Input.GetKeyDown(KeyCode.E))
         {
-            if (heldObject != null)
-            {
-                heldObject.Drop();
-                heldObject = null;
-                return;
-            }
-
-            if (current != null)
+            if (activeObject == null && current != null)
             {
                 current.OnInteract();
                 HoldableObject holdable = current as HoldableObject;
                 if (holdable != null)
-                    heldObject = holdable;
+                    activeObject = holdable;
+            }
+            else if (activeObject != null)
+            {
+                activeObject.OnInteract(); // Reading -> Held
             }
         }
 
-        // LMB charge + throw
-        if (heldObject != null)
+        // F = put back (only works while Reading)
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            if (activeObject != null && activeObject.IsReading())
+            {
+                activeObject.PutBack();
+                activeObject = null;
+            }
+        }
+
+        // LMB charge + throw (only while Held)
+        if (activeObject != null && activeObject.IsHeld())
         {
             if (Input.GetMouseButton(0))
             {
@@ -73,8 +77,8 @@ public class PlayerInteract : MonoBehaviour
                 float percent = ChargePercent;
                 Vector3 throwDir = playerCamera.transform.forward;
 
-                heldObject.Throw(throwDir, percent);
-                heldObject = null;
+                activeObject.Throw(throwDir, percent);
+                activeObject = null;
 
                 isCharging = false;
                 chargeTime = 0f;
