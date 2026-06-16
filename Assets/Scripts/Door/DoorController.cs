@@ -24,6 +24,7 @@ void OnEnable()
         {
             case DialogueEventType.OpenDoor:
                 Open();
+                Debug.Log("Anim Open");
                 break;
 
             case DialogueEventType.CloseDoor:

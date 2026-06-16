@@ -4,6 +4,7 @@ using UnityEngine;
 public class PaperCrumple : MonoBehaviour
 {
     public Animator paperAnimator;
+    public Animator endDoorAnimator;
     public HoldableObject holdable; // drag the PARENT's HoldableObject here
     bool isCrumpled = false;
 
@@ -13,6 +14,9 @@ public class PaperCrumple : MonoBehaviour
         {
             isCrumpled = true;
             paperAnimator.SetBool("IsCrumpled", true);
+            endDoorAnimator.SetBool("Open", true);
+            Debug.Log("Lbab T7l");
+
         }
     }
 }

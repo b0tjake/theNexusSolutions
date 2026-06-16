@@ -27,6 +27,10 @@ MonoBehaviour:
     m_Key: Intro3
     m_Metadata:
       m_Items: []
+  - m_Id: 3823329650356224
+    m_Key: Hallway1
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
