@@ -21,7 +21,7 @@ public class DialogueManager : MonoBehaviour
     [Header("Audio")]
     public AudioSource audioSource;
 
-    public Action<DialogueEventType> OnDialogueEvent;
+    public event Action<DialogueEventType, string> OnDialogueEvent;
 
     void Awake()
     {
@@ -52,30 +52,29 @@ public class DialogueManager : MonoBehaviour
 
     private IEnumerator HandleLine(DialogueLine line)
     {
-        // 📝 Localization
+        // Localization
         var op = line.text.GetLocalizedStringAsync();
         yield return op;
 
         string localizedText = op.Result;
 
-        // 🗣️ UI text
+        // UI text
         dialogueText.text = string.IsNullOrEmpty(line.speakerName)
             ? localizedText
             : $"{line.speakerName}: {localizedText}";
 
-        // 🚪 EVENT (clean, single call)
+        // Event
         if (line.eventType != DialogueEventType.None)
         {
-            Debug.Log("Triggering Event: " + line.eventType);
-            OnDialogueEvent?.Invoke(line.eventType);
+            Debug.Log($"Triggering Event: {line.eventType} → target: '{line.targetDoorID}'");
+            OnDialogueEvent?.Invoke(line.eventType, line.targetDoorID);
         }
 
-        // 🔊 AUDIO or ⏱ WAIT
+        // Audio or wait
         if (line.audio != null)
         {
             audioSource.clip = line.audio;
             audioSource.Play();
-
             yield return new WaitWhile(() => audioSource.isPlaying);
         }
         else

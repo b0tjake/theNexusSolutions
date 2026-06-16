@@ -3,8 +3,7 @@ using UnityEngine;
 public class DialogueTrigger : MonoBehaviour
 {
     public DialogueData dialogueData;
-    public DoorController targetDoor; // drag the specific door here in Inspector
-    bool played = false;
+    private bool played = false;
 
     void OnTriggerEnter(Collider other)
     {
@@ -12,8 +11,5 @@ public class DialogueTrigger : MonoBehaviour
         if (!other.CompareTag("Player")) return;
         played = true;
         DialogueManager.Instance.PlayDialogue(dialogueData.lines);
-
-        if (targetDoor != null)
-            targetDoor.OpenDoor();
     }
 }

@@ -3,14 +3,15 @@ using UnityEngine;
 public class DoorController : MonoBehaviour
 {
     public Animator animator;
+    public string doorID;
 
     private bool isOpen = false;
     private bool isLocked = false;
 
-void OnEnable()
-{
-    DialogueManager.Instance.OnDialogueEvent += HandleDialogueEvent;
-}
+    void OnEnable()
+    {
+        DialogueManager.Instance.OnDialogueEvent += HandleDialogueEvent;
+    }
 
     void OnDisable()
     {
@@ -18,52 +19,32 @@ void OnEnable()
             DialogueManager.Instance.OnDialogueEvent -= HandleDialogueEvent;
     }
 
-    void HandleDialogueEvent(DialogueEventType type)
+    void HandleDialogueEvent(DialogueEventType type, string targetID)
     {
+        if (targetID != doorID) return;
+
         switch (type)
         {
-            case DialogueEventType.OpenDoor:
-                Open();
-                Debug.Log("Anim Open");
-                break;
-
-            case DialogueEventType.CloseDoor:
-                Close();
-                break;
-
-            case DialogueEventType.LockDoor:
-                Lock();
-                break;
+            case DialogueEventType.OpenDoor:  Open();  break;
+            case DialogueEventType.CloseDoor: Close(); break;
+            case DialogueEventType.LockDoor:  Lock();  break;
         }
     }
 
     public void Open()
     {
         if (isLocked || isOpen) return;
-
         isOpen = true;
-
-        if (animator != null)
-            animator.SetTrigger("Open");
+        if (animator != null) animator.SetTrigger("Open");
     }
 
     public void Close()
     {
         if (!isOpen) return;
-
         isOpen = false;
-
-        if (animator != null)
-            animator.SetTrigger("Close");
+        if (animator != null) animator.SetTrigger("Close");
     }
 
-    public void Lock()
-    {
-        isLocked = true;
-    }
-
-    public void Unlock()
-    {
-        isLocked = false;
-    }
+    public void Lock()   { isLocked = true; }
+    public void Unlock() { isLocked = false; }
 }
