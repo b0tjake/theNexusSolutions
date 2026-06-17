@@ -11,10 +11,14 @@ Collider col;
     public float followSpeed = 15f;
     public float rotationSpeed = 8f;
     public Vector3 heldRotationEuler = new Vector3(0f, 0f, -90f);
+    public bool lockRotationWhenHeld = false; // ← add this
+
 
     [Header("Reading Settings")]
     public float readDistance = 1f;
     public Vector3 readRotationEuler = new Vector3(0f, 0f, -90f);
+    public bool skipReadingState = false;
+
 
     [Header("Throw Settings")]
     public float minThrowForce = 5f;
@@ -44,19 +48,22 @@ Collider col;
     originalLayer = gameObject.layer;
 }
 
-    public override void OnInteract()
+public override void OnInteract()
+{
+    switch (currentState)
     {
-        switch (currentState)
-        {
-            case State.Idle:
-                StartReading();
-                break;
-
-            case State.Reading:
+        case State.Idle:
+            if (skipReadingState)
                 PickUp();
-                break;
-        }
+            else
+                StartReading();
+            break;
+
+        case State.Reading:
+            PickUp();
+            break;
     }
+}
 
 public void StartReading()
 {
@@ -80,18 +87,17 @@ public void PickUp()
 public void PutBack()
 {
     currentState = State.Idle;
-    rb.isKinematic = false;
-    rb.useGravity = true;
-    rb.linearDamping = 1f;
-    rb.angularDamping = 0.05f;
     gameObject.layer = originalLayer;
 
     transform.position = originalPosition;
     transform.rotation = originalRotation;
-    rb.linearVelocity = Vector3.zero;
-    rb.angularVelocity = Vector3.zero;
-}
 
+    rb.isKinematic = true; // kinematic first to teleport cleanly
+    rb.isKinematic = false; // then release
+    rb.useGravity = true;
+    rb.linearDamping = 1f;
+    rb.angularDamping = 0.05f;
+}
 public void Drop()
 {
     currentState = State.Idle;
@@ -130,21 +136,18 @@ public void Throw(Vector3 direction, float chargePercent)
             Quaternion targetRot = cameraTransform.rotation * Quaternion.Euler(readRotationEuler);
             visual.localRotation = Quaternion.Euler(0f, 180f, -90f);        }
         else if (currentState == State.Held)
-        {
-            Vector3 targetPos = cameraTransform.position
-                              + cameraTransform.forward * holdDistance;
+{
+    Vector3 targetPos = cameraTransform.position
+                      + cameraTransform.forward * holdDistance;
+    rb.linearVelocity = (targetPos - transform.position) * followSpeed;
 
-            rb.linearVelocity = (targetPos - transform.position) * followSpeed;
-
-            Quaternion targetRot = cameraTransform.rotation * Quaternion.Euler(heldRotationEuler);
-
-            // 🔥 ROTATE CHILD SMOOTHLY
-            visual.rotation = Quaternion.Slerp(
-                visual.rotation,
-                targetRot,
-                Time.deltaTime * rotationSpeed
-            );
-        }
+    if (!lockRotationWhenHeld) // ← only rotate if allowed
+    {
+        Quaternion targetRot = cameraTransform.rotation * Quaternion.Euler(heldRotationEuler);
+        Quaternion newRot = Quaternion.Slerp(transform.rotation, targetRot, Time.deltaTime * rotationSpeed);
+        rb.MoveRotation(newRot);
+    }
+}
     }
 
     public bool IsHeld() => currentState == State.Held;

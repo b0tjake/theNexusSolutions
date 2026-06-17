@@ -26,6 +26,7 @@ MonoBehaviour:
     audio: {fileID: 8300000, guid: 41fba42e8291e3f479329d726fb009f0, type: 3}
     duration: 1
     eventType: 1
+    targetDoorID: 2
   references:
     version: 2
     RefIds: []
